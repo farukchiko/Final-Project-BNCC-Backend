@@ -1,13 +1,18 @@
-<h1>Product Detail</h1>
+@extends('layouts.main')
 
-@if ($product)
-    <h2>{{ $product->name }}</h2>
-    <img src="{{ asset('images/'.$product->image) }}" width="200">
-    <p><strong>Description:</strong> {{ $product->description }}</p>
-    <p><strong>Price:</strong> Rp {{ $product->price }}</p>
-    <p><strong>Stock:</strong> {{ $product->stock }}</p>
-@else
-    <p>Product not found.</p>
-@endif
+@section('content')
+<div class="card p-4 mb-5 shadow-sm max-w-2xl mx-auto">
+    <h2 class="h4 mb-4">Product Details</h2>
 
-<a href="{{ route('products.index') }}">Back to List</a>
+    <div class="mb-3">
+        <img src="{{ asset('images/'.$product->image) }}" class="img-thumbnail w-100" style="max-height: 300px; object-fit:cover;">
+    </div>
+
+    <h3 class="h5">{{ $product->name }}</h3>
+    <p class="text-muted">{{ $product->description }}</p>
+    <p class="font-weight-bold text-primary">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+    <p class="text-muted">Stock: {{ $product->stock }}</p>
+
+    <a href="{{ route('products.index') }}" class="btn btn-outline-primary mt-3">← Back to Product List</a>
+</div>
+@endsection
