@@ -4,7 +4,7 @@
 <div class="text-center mt-5">
     <h2 class="text-primary mb-4">Welcome to Sweet Shop, {{ Auth::user()->name }}! 🤩🎉</h2>
 
-    <p class="lead text-muted">Nikmati promo & showcase kami di bawah ini!</p>
+    <p class="lead text-muted">Nikmati Promo & Showcase Kami Di Bawah Ini!</p>
 
     {{-- Video Embed --}}
     <div class="rounded shadow mt-4 overflow-hidden" style="border-radius: 10px; max-width: 100%; margin: 0 auto; position: relative; height: 0; padding-bottom: 56.25%; overflow: hidden;">
