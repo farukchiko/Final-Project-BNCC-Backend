@@ -4,7 +4,7 @@
 <div class="card p-4 mb-5 shadow-sm max-w-2xl mx-auto">
     <h2 class="h4 mb-4">Edit Product</h2>
 
-    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -39,7 +39,7 @@
         </div>
 
         <button type="submit" class="btn btn-warning text-white">Update Product</button>
-        <a href="{{ route('products.index') }}" class="btn btn-light">Cancel</a>
+        <a href="{{ route('admin.products.index') }}" class="btn btn-light">Cancel</a>
     </form>
 </div>
 @endsection

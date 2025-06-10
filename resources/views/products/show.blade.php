@@ -13,6 +13,6 @@
     <p class="font-weight-bold text-primary">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
     <p class="text-muted">Stock: {{ $product->stock }}</p>
 
-    <a href="{{ route('products.index') }}" class="btn btn-outline-primary mt-3">← Back to Product List</a>
+    <a href="{{ route('admin.products.index') }}" class="btn btn-outline-primary">← Back to Product List</a>
 </div>
 @endsection

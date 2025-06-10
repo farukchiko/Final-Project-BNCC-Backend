@@ -56,7 +56,7 @@ class ProductController extends Controller
             'image' => $imageName,
         ]);
 
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
     }
 
     public function show(Product $product)
@@ -93,12 +93,18 @@ class ProductController extends Controller
             'image' => $product->image,
         ]);
 
-        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
+    }
+
+    public function userIndex()
+    {
+    $products = Product::all();
+    return view('products.user-index', compact('products'));
     }
 }

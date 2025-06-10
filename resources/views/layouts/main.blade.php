@@ -12,13 +12,22 @@
         <div class="container d-flex justify-content-between align-items-center py-3">
             <a href="/products" class="logo h3 mb-0">Sweet Shop</a>
             <nav class="nav d-flex align-items-center" style="gap: 24px;">
-                <a href="/products" class="text-dark">Products</a>
-                <a href="/products/create" class="text-dark">Add Product</a>
-            
-                <form action="/logout" method="POST" class="d-inline">
-                    @csrf
-                    <button type="submit" class="btn btn-link text-dark p-0 m-0" style="text-decoration:none;">Logout</button>
-                </form>
+                @if(Auth::guard('admin')->check())
+                    <a href="{{ route('admin.products.index') }}" class="text-dark">Products</a>
+                    <a href="{{ route('admin.products.create') }}" class="text-dark">Add Product</a>
+                    <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-link text-dark p-0 m-0" style="text-decoration:none;">Logout</button>
+                    </form>
+                @elseif(Auth::check())
+                    <a href="{{ route('order.history') }}" class="text-dark">Order History</a>
+                    <a href="{{ route('user.products.index') }}" class="text-dark">Products</a>
+                    <a href="{{ route('cart.index') }}" class="text-dark">Cart</a>
+                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-link text-dark p-0 m-0" style="text-decoration:none;">Logout</button>
+                    </form>
+                @endif
             </nav>
         </div>
     </header>
@@ -34,7 +43,7 @@
     </main>
 
     <footer class="footer text-center py-4 border-top">
-        &copy; 2025 Sweet Shop | Powered by Molla Template
+        &copy; 2025 Sweet Shop | Powered by TrioMaut Group
     </footer>
 
     <script src="{{ asset('molla/assets/js/jquery.min.js') }}"></script>

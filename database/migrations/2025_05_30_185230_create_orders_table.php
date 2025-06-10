@@ -5,17 +5,16 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up(): void {
+    public function up(): void
+    {
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
-            $table->bigInteger('total_price');
+            $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
+            $table->integer('total_price');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
-
+    
     public function down(): void {
         Schema::dropIfExists('orders');
     }

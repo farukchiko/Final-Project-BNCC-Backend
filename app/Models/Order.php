@@ -2,27 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasUuids;
 
-    protected $keyType = 'string';
+    protected $fillable = ['user_id', 'total_price'];
+
     public $incrementing = false;
+    protected $keyType = 'string';
 
-    protected static function boot()
+    // Relasi ke user
+    public function user()
     {
-        parent::boot();
-        static::creating(function ($model) {
-            $model->id = (string) Str::uuid();
-        });
+        return $this->belongsTo(User::class);
     }
 
-    protected $fillable = [
-        'user_id',
-        'total_price',
-    ];
+    // Relasi ke order_detail
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
 }

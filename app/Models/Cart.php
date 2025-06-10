@@ -2,28 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Cart extends Model
 {
-    use HasFactory;
+    use HasUuids;
 
-    protected $keyType = 'string';
+    protected $fillable = ['user_id', 'product_id', 'quantity'];
+
     public $incrementing = false;
+    protected $keyType = 'string';
 
-    protected static function boot()
+    public function product()
     {
-        parent::boot();
-        static::creating(function ($model) {
-            $model->id = (string) Str::uuid();
-        });
+        return $this->belongsTo(Product::class);
     }
-
-    protected $fillable = [
-        'user_id',
-        'product_id',
-        'quantity',
-    ];
 }
